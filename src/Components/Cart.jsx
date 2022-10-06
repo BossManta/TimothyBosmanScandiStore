@@ -7,8 +7,7 @@ import CartTotalCost from './CartTotalCost';
 import CartTotalQuantity from './CartTotalQuantity';
 
 class Cart extends Component {
-    state = {  } 
-
+    
     static contextType = GlobalContext;
 
     render() { 
