@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 
-import GlobalContext from './GlobalContext';
-import Modal from './Modal';
+import GlobalContext from '../../State Management/GlobalContext';
+import Modal from '../../Shared/Modal';
 
 class CurrencySelectorModal extends Component {
     state = {  } 

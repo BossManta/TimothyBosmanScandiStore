@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import styled, { css } from 'styled-components';
-import CartModal from './CartModal';
+
+import CartModal from '../../PageSpecific/Cart/CartModal';
 import CurrencySelectorModal from './CurrencySelectorModal';
-import GlobalContext from './GlobalContext';
-import CartTotalQuantity, {getTotalQuantity} from './CartTotalQuantity';
+import GlobalContext from '../../State Management/GlobalContext';
+import CartTotalQuantity, {getTotalQuantity} from '../Cart/CartTotalQuantity';
 
 class Navbar extends Component {
     state = {
@@ -47,7 +48,7 @@ class Navbar extends Component {
 
 
                 <StyledLogo>
-                    <img src={require('../GreenLogo.png')} alt="Green Logo"/>
+                    <img src={require('../../../Images/GreenLogo.png')} alt="Green Logo"/>
                 </StyledLogo>
 
 
@@ -57,7 +58,7 @@ class Navbar extends Component {
                     <StyledNavModalButton onClick={() => this.setCurrencyModalVisibility(true)}>
                         <span style={{display:"flex", alignItems:"center"}}>
                             $
-                            <StyledCurrencySelectorArrow flipped={!this.state.isCurrencyModalOpen} src={require("../CurrencySelectorArrow.png")}/>
+                            <StyledCurrencySelectorArrow flipped={!this.state.isCurrencyModalOpen} src={require("../../../Images/CurrencySelectorArrow.png")}/>
                         </span>
                     </StyledNavModalButton>
                     
@@ -65,7 +66,7 @@ class Navbar extends Component {
                     {/* Cart Button */}
                     <StyledNavModalButton onClick={() => this.setCartModalVisibility(true)}>
                         <div style={{position:"relative", paddingTop:"0.7em", paddingRight:"0.6em"}}>
-                            <img src={require("../Cart.png")} alt="Cart" height="15em"/>
+                            <img src={require("../../../Images/Cart.png")} alt="Cart" height="15em"/>
                             <StyledCartCountBubble quantity={getTotalQuantity(this.context)}>
                                 <CartTotalQuantity />
                             </StyledCartCountBubble>

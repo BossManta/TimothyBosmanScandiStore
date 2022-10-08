@@ -3,7 +3,7 @@ import { Query, client, Field } from '@tilework/opus';
 import styled from 'styled-components';
 
 import ProductPreview from './ProductPreview';
-import GlobalContext from './GlobalContext';
+import GlobalContext from '../../State Management/GlobalContext';
 
 class PLP extends Component {
 

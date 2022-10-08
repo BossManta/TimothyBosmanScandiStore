@@ -2,10 +2,10 @@ import React, {Component} from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
-import PriceViewer from './PriceViewer';
+import PriceViewer from '../../Shared/PriceViewer';
 import PLPImagePreview from './PLPImagePreview';
-import GlobalContext from './GlobalContext';
-import AttributeSelectionModal from './AttributeSelectionModal';
+import GlobalContext from '../../State Management/GlobalContext';
+import AttributeSelectionModal from '../../Shared/AttributeSelectionModal';
 
 class ProductPreview extends Component {
 
@@ -54,7 +54,7 @@ class ProductPreview extends Component {
 
                 <StyledAddToCartButtonContainer>
                     <StyledAddToCartButton onClick={(e)=>this.addToCartIfCan(e, this.props.product)} disabled={!inStock}>
-                        <img style={{height:"40%", filter:" brightness(500%)"}} src={require("../Cart.png")} alt="test"/>
+                        <img style={{height:"40%", filter:" brightness(500%)"}} src={require("../../../Images/Cart.png")} alt="test"/>
                     </StyledAddToCartButton>
                 </StyledAddToCartButtonContainer>
 

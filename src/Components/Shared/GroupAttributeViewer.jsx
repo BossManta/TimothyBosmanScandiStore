@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import GlobalContext from './GlobalContext';
+import GlobalContext from '../State Management/GlobalContext';
 
 import SingleAttributeViewer from './SingleAttributeViewer';
 

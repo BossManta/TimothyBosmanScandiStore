@@ -3,9 +3,9 @@ import styled from 'styled-components';
 
 import Modal from './Modal';
 import GroupAttributeViewer from './GroupAttributeViewer';
-import { StyledBrandHeader } from '../SharedStyles';
-import { StyledButton } from '../SharedStyles';
-import GlobalContext from './GlobalContext';
+import { StyledBrandHeader } from '../../SharedStyles';
+import { StyledButton } from '../../SharedStyles';
+import GlobalContext from '../State Management/GlobalContext';
 
 class AttributeSelectionModal extends Component {
     state = {  } 

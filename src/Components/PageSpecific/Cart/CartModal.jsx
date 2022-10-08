@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
-import GlobalContext from './GlobalContext';
-import Modal from './Modal';
+import GlobalContext from '../../State Management/GlobalContext';
+import Modal from '../../Shared/Modal';
 import CartItemPreview from './CartItemPreview';
-import { StyledNameHeader, StyledBrandHeader } from '../SharedStyles';
+import { StyledNameHeader, StyledBrandHeader } from '../../../SharedStyles';
 import CartTotalCost from './CartTotalCost';
 import CartTotalQuantity from './CartTotalQuantity';
 

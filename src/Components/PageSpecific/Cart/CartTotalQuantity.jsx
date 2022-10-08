@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import GlobalContext from './GlobalContext';
+import GlobalContext from '../../State Management/GlobalContext';
 
 export const getTotalQuantity = (context) => {
     return context.cart.reduce((p, c)=>(p+c.count),0);

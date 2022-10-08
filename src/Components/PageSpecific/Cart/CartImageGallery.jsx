@@ -22,10 +22,10 @@ class CartImageGallery extends Component {
                 <StyledTestImage src={this.props.gallery[this.state.selectedImageIndex]} alt="Cart Item Preview"/>
                 <StyledImageArrowContainer>
                     <StyledImageArrowButton onClick={this.previousImage}>
-                        <StyledGalleryArrowIcon src={require("../GalleryArrow.png")} flipped/>
+                        <StyledGalleryArrowIcon src={require("../../../Images/GalleryArrow.png")} flipped/>
                     </StyledImageArrowButton>
                     <StyledImageArrowButton onClick={this.nextImage}>
-                        <StyledGalleryArrowIcon src={require("../GalleryArrow.png")}/>
+                        <StyledGalleryArrowIcon src={require("../../../Images/GalleryArrow.png")}/>
                     </StyledImageArrowButton>
                 </StyledImageArrowContainer>
             </StyledTestImageContainer>

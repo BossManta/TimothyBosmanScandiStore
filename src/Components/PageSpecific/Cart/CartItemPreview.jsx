@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
 import styled from 'styled-components';
-import { StyledBrandHeader, StyledNameHeader } from '../SharedStyles';
+import { StyledBrandHeader, StyledNameHeader } from '../../../SharedStyles';
 
-import GlobalContext from './GlobalContext';
-import GroupAttributeViewer from './GroupAttributeViewer';
-import PriceViewer from './PriceViewer';
+import GlobalContext from '../../State Management/GlobalContext';
+import GroupAttributeViewer from '../../Shared/GroupAttributeViewer';
+import PriceViewer from '../../Shared/PriceViewer';
 import CartImageGallery from './CartImageGallery';
 
 class CartItemPreview extends Component {

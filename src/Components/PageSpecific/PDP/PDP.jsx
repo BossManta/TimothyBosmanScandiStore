@@ -3,11 +3,11 @@ import React, {Component} from 'react';
 import { Query, client, Field } from '@tilework/opus';
 import styled from 'styled-components';
 
-import GroupAttributeViewer from './GroupAttributeViewer';
+import GroupAttributeViewer from '../../Shared/GroupAttributeViewer';
 import ProductImageViewer from './ProductImageViewer';
-import PriceViewer from './PriceViewer';
-import GlobalContext from './GlobalContext';
-import { StyledBrandHeader } from '../SharedStyles';
+import PriceViewer from '../../Shared/PriceViewer';
+import GlobalContext from '../../State Management/GlobalContext';
+import { StyledBrandHeader } from '../../../SharedStyles';
 import { useLocation, useParams } from 'react-router-dom';
 
 class PDPClass extends Component {

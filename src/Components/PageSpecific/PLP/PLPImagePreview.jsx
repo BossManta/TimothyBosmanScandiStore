@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import SquareImage from './SquareImage';
+import SquareImage from '../../Shared/SquareImage';
 
 class PLPImagePreview extends Component {
     render() { 

@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
 
-import GlobalContext from './GlobalContext';
-import CartItemPreview from './CartItemPreview';
-import { StyledNameHeader } from '../SharedStyles';
-import CartTotalCost from './CartTotalCost';
-import CartTotalQuantity from './CartTotalQuantity';
+import GlobalContext from '../../State Management/GlobalContext'
+import CartItemPreview from '../Cart/CartItemPreview';
+import { StyledNameHeader } from '../../../SharedStyles';
+import CartTotalCost from '../../PageSpecific/Cart/CartTotalCost';
+import CartTotalQuantity from '../../PageSpecific/Cart/CartTotalQuantity';
 
 class Cart extends Component {
     
