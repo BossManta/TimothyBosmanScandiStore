@@ -6,9 +6,9 @@ import styled from 'styled-components';
 import GroupAttributeViewer from '../../Shared/GroupAttributeViewer';
 import ProductImageViewer from './ProductImageViewer';
 import PriceViewer from '../../Shared/PriceViewer';
-import GlobalContext from '../../State Management/GlobalContext';
 import { StyledBrandHeader } from '../../../SharedStyles';
 import { useLocation, useParams } from 'react-router-dom';
+import GlobalContext from '../../State Management/GlobalContext';
 
 class PDPClass extends Component {
     state = { 
@@ -51,7 +51,9 @@ class PDPClass extends Component {
     }
 
     render() { 
+        
         const {name, gallery, brand, inStock, description, attributes, prices} = this.state.productData;
+        
         return (
             <StyledPDP>
                 <ProductImageViewer images={gallery}/>
