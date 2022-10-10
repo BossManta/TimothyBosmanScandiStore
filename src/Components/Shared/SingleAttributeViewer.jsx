@@ -6,7 +6,6 @@ class SingleAttributeViewer extends Component {
 
     static contextType = GlobalContext;
 
-
     handleSelectionUpdate = (attributeName, selectedID) => {
         if (!this.props.staticSelection)
         {

@@ -4,8 +4,8 @@ import styled, { css } from 'styled-components';
 
 import CartModal from '../../PageSpecific/Cart/CartModal';
 import CurrencySelectorModal from './CurrencySelectorModal';
-import GlobalContext from '../../State Management/GlobalContext';
 import CartTotalQuantity, {getTotalQuantity} from '../Cart/CartTotalQuantity';
+import GlobalContext from '../../State Management/GlobalContext';
 
 class Navbar extends Component {
     state = {
@@ -33,8 +33,8 @@ class Navbar extends Component {
     render() 
     { 
         return (
-            <StyledNavbar >
-                <div style={{paddingLeft:20, width:"30%", display:"flex"}}>
+            <StyledNavbar>
+                <nav style={{paddingLeft:20, width:"30%", display:"flex"}}>
                     {this.context.categoryList.map(c=>(
                         <StyledNavLink    to={"/"}
                                             key={c.id}
@@ -44,7 +44,7 @@ class Navbar extends Component {
                             {c.name.toUpperCase()}
                         </StyledNavLink>
                     ))}
-                </div>
+                </nav>
 
 
                 <StyledLogo>
@@ -77,10 +77,10 @@ class Navbar extends Component {
 
                     {/* Modals*/}
                     {this.state.isCurrencyModalOpen && 
-                    <CurrencySelectorModal setIsOpen={this.setCurrencyModalVisibility}></CurrencySelectorModal>}
+                    <CurrencySelectorModal setIsOpen={this.setCurrencyModalVisibility}/>}
                     
                     {this.state.isCartModalOpen && 
-                    <CartModal setIsOpen={this.setCartModalVisibility}></CartModal>}
+                    <CartModal setIsOpen={this.setCartModalVisibility}/>}
                 </div>
             </StyledNavbar>
         );

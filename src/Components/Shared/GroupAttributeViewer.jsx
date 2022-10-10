@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
-import GlobalContext from '../State Management/GlobalContext';
 
 import SingleAttributeViewer from './SingleAttributeViewer';
+import GlobalContext from '../State Management/GlobalContext';
 
 class GroupAttributeViewer extends Component {
 

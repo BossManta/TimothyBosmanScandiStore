@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
 
-import GlobalContext from '../../State Management/GlobalContext'
 import CartItemPreview from '../Cart/CartItemPreview';
 import { StyledNameHeader } from '../../../SharedStyles';
 import CartTotalCost from '../../PageSpecific/Cart/CartTotalCost';
 import CartTotalQuantity from '../../PageSpecific/Cart/CartTotalQuantity';
+import GlobalContext from '../../State Management/GlobalContext'
 
 class Cart extends Component {
     
@@ -19,7 +19,7 @@ class Cart extends Component {
                 )}
                 <div>
                     <StyledNameHeader>
-                        Quantity: <CartTotalQuantity></CartTotalQuantity>
+                        Quantity: <CartTotalQuantity/>
                     </StyledNameHeader>
                     
                     <StyledNameHeader>

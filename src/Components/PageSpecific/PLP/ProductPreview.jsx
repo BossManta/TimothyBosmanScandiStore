@@ -4,8 +4,8 @@ import { Link } from 'react-router-dom';
 
 import PriceViewer from '../../Shared/PriceViewer';
 import PLPImagePreview from './PLPImagePreview';
-import GlobalContext from '../../State Management/GlobalContext';
 import AttributeSelectionModal from '../../Shared/AttributeSelectionModal';
+import GlobalContext from '../../State Management/GlobalContext';
 
 class ProductPreview extends Component {
 

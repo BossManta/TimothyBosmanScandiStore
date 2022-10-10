@@ -26,7 +26,7 @@ class PLP extends Component {
     const categoryNameQuery = new Query("category", false)
                                   .addArgument("input", "CategoryInput", {title:category})
                                   .addField(new Field("products", true)
-                                    .addFieldList(["id", "name", "inStock", "gallery", "brand"])
+                                    .addFieldList(["id", "name", "inStock", "gallery", "brand", "description"])
                                     .addFieldList([
 
                                       (new Field("prices")
