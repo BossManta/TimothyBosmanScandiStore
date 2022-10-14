@@ -4,6 +4,15 @@ import { CCProvider } from './CartContext';
 class CartStateManager extends Component {
     state = {  } 
 
+    setState(state) {
+        super.setState(state);
+    }
+
+    updateLocalStorage(cart)
+    {
+        window.localStorage.setItem('cart', JSON.stringify(cart));
+    }
+
     constructor(props)
     {
         super(props)
@@ -29,7 +38,6 @@ class CartStateManager extends Component {
         }
 
         this.setCartItemCount = (cartIndex, count) => {
-            
             this.setState(prevState => {
                     const newState = JSON.parse(JSON.stringify(prevState));
                     if (count>0)
@@ -41,34 +49,41 @@ class CartStateManager extends Component {
                         newState.cart.splice(cartIndex,1);
                     }
 
+                    this.updateLocalStorage(newState.cart)
                     return ({...newState});              
                 }
             );
         }
 
         this.addPendingItemToCart = () => {
-            this.addItemToCart(this.state.pendingItem);
+            return this.addItemToCart(this.state.pendingItem);
         }
 
         this.addItemToCart = (item) => {
-            let cartCopy = JSON.parse(JSON.stringify(this.state.cart));
-
-            // Checks if item already in cart (If already in cart increase count)
-            const duplicateItem = cartCopy.find(p => (JSON.stringify([p.details.name, p.attributeSelections])===JSON.stringify([item.details.name, item.attributeSelections])));
-            if (duplicateItem)
+            const allAttributesSelected = Object.keys(item.details.attributes).length===Object.keys(item.attributeSelections).length;
+            if (allAttributesSelected)
             {
-                duplicateItem.count++;
-            }
-            else
-            {
-                cartCopy=[...cartCopy, JSON.parse(JSON.stringify(item))];
-            }
+                let cartCopy = JSON.parse(JSON.stringify(this.state.cart));
 
-            this.setState({cart: cartCopy});
+                // Checks if item already in cart (If already in cart increase count)
+                const duplicateItem = cartCopy.find(p => (JSON.stringify([p.details.name, p.attributeSelections])===JSON.stringify([item.details.name, item.attributeSelections])));
+                if (duplicateItem)
+                {
+                    duplicateItem.count++;
+                }
+                else
+                {
+                    cartCopy=[...cartCopy, JSON.parse(JSON.stringify(item))];
+                }
+
+                this.updateLocalStorage(cartCopy);
+                this.setState({cart: cartCopy});
+            }
+            return allAttributesSelected;
         }
-
+        const oldCart = JSON.parse(window.localStorage.getItem('cart'));
         this.state = {
-            cart: [],
+            cart: oldCart || [],
             pendingItem: {details:{}, attributeSelections: {}, count: 0},
             setItemAttributeSelection: this.setItemAttributeSelection,
             resetPendingItem: this.resetPendingItem,     

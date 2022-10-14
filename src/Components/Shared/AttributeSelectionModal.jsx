@@ -26,8 +26,10 @@ class AttributeSelectionModal extends Component {
     }
 
     handleSubmit = () => {
-        this.context.addPendingItemToCart();
-        this.props.setIsOpen(false);
+        if (this.context.addPendingItemToCart())
+        {
+            this.props.setIsOpen(false);
+        }
     }
 
 

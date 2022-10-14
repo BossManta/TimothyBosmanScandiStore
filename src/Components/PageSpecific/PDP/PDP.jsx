@@ -3,12 +3,10 @@ import React, {Component} from 'react';
 import { Query, client, Field } from '@tilework/opus';
 import styled from 'styled-components';
 
-import GroupAttributeViewer from '../../Shared/GroupAttributeViewer';
-import ProductImageViewer from './ProductImageViewer';
-import PriceViewer from '../../Shared/PriceViewer';
-import { StyledBrandHeader } from '../../../SharedStyles';
+import ProductGalleryViewer from './ProductGalleryViewer';
 import { useLocation, useParams } from 'react-router-dom';
 import GlobalContext from '../../State Management/GlobalContext';
+import ProductDetailsViewer from './ProductDetailsViewer';
 
 class PDPClass extends Component {
     state = { 
@@ -50,31 +48,19 @@ class PDPClass extends Component {
         return (await client.post(productDataQuery)).product;
     }
 
-    render() { 
-        
-        const {name, gallery, brand, inStock, description, attributes, prices} = this.state.productData;
-        
+    render() {        
+
+        const {gallery} = this.state.productData;
+
         return (
             <StyledPDP>
-                <ProductImageViewer images={gallery}/>
+                <StyledGalleryContainer>
+                    <ProductGalleryViewer images={gallery}/>
+                </StyledGalleryContainer>
                 
-                <div style={{textAlign:"left", width:"30%"}}>
-                    <h1>{brand}</h1>
-                    <h1 style={{fontWeight:'normal'}}>{name}</h1>
-                    
-                    <GroupAttributeViewer attributes={attributes}/>
-                    {prices?
-                        <StyledBrandHeader><PriceViewer prices={prices}/></StyledBrandHeader>
-                    :<StyledBrandHeader>Loading...</StyledBrandHeader>}
-
-                    <StyledAddToCartButton  inStock={inStock}
-                                            disabled={!inStock}
-                                            onClick={()=>this.context.addPendingItemToCart()}>
-                        {inStock?"ADD TO CART":"OUT OF STOCK"}
-                    </StyledAddToCartButton>
-
-                    <div className="content" dangerouslySetInnerHTML={{__html: description}}></div>
-                </div>
+                <StyledDetailsContainer>
+                    <ProductDetailsViewer productData={this.state.productData}/>
+                </StyledDetailsContainer>
             </StyledPDP>
         );
     }
@@ -95,17 +81,27 @@ const PDP = (props) => (
 const StyledPDP = styled.div`
     display: flex;
     margin-top: 100px;
-    flex-wrap: wrap;
+    @media screen and (max-width: 700px) {
+        flex-direction: column;
+    }
 `
 
-const StyledAddToCartButton = styled.button`
-    background-color: ${({inStock})=>inStock?"limegreen":"grey"};
-    margin: 0px;
-    padding: 15px;
-    width: 100%;
-    border: none;
-    color: white;
-    font-weight: bold;
+const StyledGalleryContainer = styled.div`
+    width: 60%;
+    height: min(80vh,80vw);
+
+    @media screen and (max-width: 700px) {
+        width: 100%;
+    }
+`
+
+const StyledDetailsContainer = styled.div`
+    text-align: left;
+    width: 30%;
+
+    @media screen and (max-width: 700px) {
+        width: 100%;
+    }
 `
 
 export default PDP;

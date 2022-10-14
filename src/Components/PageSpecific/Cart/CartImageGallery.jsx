@@ -20,14 +20,15 @@ class CartImageGallery extends Component {
         return (
             <StyledTestImageContainer>
                 <StyledTestImage src={this.props.gallery[this.state.selectedImageIndex]} alt="Cart Item Preview"/>
-                <StyledImageArrowContainer>
+                {this.props.showArrows &&
+                    <StyledImageArrowContainer>
                     <StyledImageArrowButton onClick={this.previousImage}>
                         <StyledGalleryArrowIcon src={require("../../../Images/GalleryArrow.png")} flipped/>
                     </StyledImageArrowButton>
                     <StyledImageArrowButton onClick={this.nextImage}>
                         <StyledGalleryArrowIcon src={require("../../../Images/GalleryArrow.png")}/>
                     </StyledImageArrowButton>
-                </StyledImageArrowContainer>
+                </StyledImageArrowContainer>}
             </StyledTestImageContainer>
         );
     }
@@ -68,6 +69,7 @@ const StyledTestImage = styled.img`
     width: 100%;
     height: 100%;
     object-fit: contain;
+    object-position: right;
     position: absolute;
     right: 0;
     top: 0;
@@ -77,6 +79,7 @@ const StyledTestImageContainer = styled.div`
     width: min(90%,20em);
     display: inline-block;
     position: relative;
+    /* background-color: red; */
 `
  
 export default CartImageGallery;

@@ -32,7 +32,7 @@ const StyledModalContainer = styled.div`
     width: 100px;
     height: 200px;
     top: 8%;
-    right: 1%;
+    right: 5%;
     position: fixed;
 `
 

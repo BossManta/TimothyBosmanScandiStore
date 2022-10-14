@@ -30,7 +30,7 @@ class CartItemPreview extends Component {
         const {attributeSelections, count} = this.props.item;
 
         return (
-            <StyledCartItemPreview>
+            <StyledCartItemPreview className={this.props.className}>
 
                 <div style={{width:"60%"}}>
                     <StyledBrandHeader>{brand}</StyledBrandHeader>
@@ -45,14 +45,16 @@ class CartItemPreview extends Component {
                     </div>
                 </div>
 
-                <div style={{width:"40%", display:"flex", justifyContent:"right"}}>
-                    <div style={{display:'flex', flexDirection: "column", justifyContent: "space-between", marginLeft: "1%", marginRight: "1%"}}>
+                <StyledGalleryContainer>
+                    
+                    <StyledCountButtonContainer>
                         <StyledCountButton onClick={this.incrementItemCount}>+</StyledCountButton>
                         <p style={{textAlign: "center"}}>{count}</p>
                         <StyledCountButton onClick={this.decrementItemCount}>-</StyledCountButton>
-                    </div>
-                    <CartImageGallery gallery={gallery}/>
-                </div>
+                    </StyledCountButtonContainer>
+
+                    <CartImageGallery showArrows={this.props.showArrows} gallery={gallery}/>
+                </StyledGalleryContainer>
 
             </StyledCartItemPreview>
         );
@@ -62,19 +64,36 @@ class CartItemPreview extends Component {
 
 
 const StyledCartItemPreview = styled.div`
-    margin-bottom: 1em;
-    padding-bottom: 1em;
-    border-bottom: lightgray solid 1px;
     display: flex;
     justify-content: space-between;
 `
 
+const StyledGalleryContainer = styled.div`
+    width: min(45%, 10em);
+    display: flex;
+    justify-content: right;
+`
+
+const StyledCountButtonContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-left: 1%;
+    margin-right: 1%;
+`
+
 const StyledCountButton = styled.button`
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
     border: 1px solid gray;
-    padding: 0.5em;
-    aspect-ratio: 1/1;
+    width: 1em;
+    height: 1em;
     background-color: white;
-    margin: auto;
+    color: gray;
+
+    font-weight: lighter;
+    font-size: 1.5em;
 `
 
 export default CartItemPreview;

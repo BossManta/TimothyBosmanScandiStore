@@ -5,13 +5,18 @@ import { MCProvider } from './MiscContext';
 
 class MiscStateManager extends Component {
     
+    setState(state)
+    {
+        super.setState(state);
+    }
+
     constructor(props)
     {
         super(props)
 
-
         //Global functions
         this.setSelectedCurrency = (selectedCurrency) => {
+            window.localStorage.setItem('selectedCurrency', JSON.stringify(selectedCurrency));
             this.setState({selectedCurrency});
         }
 
@@ -19,10 +24,11 @@ class MiscStateManager extends Component {
             this.setState({selectedCategory})
         }
 
-        //Global state
+
+        //Global State
         this.state = {
             currencyList: [],
-            selectedCurrency: {label: "USD", symbol:"$"},
+            selectedCurrency: {},
             setSelectedCurrency: this.setSelectedCurrency,
 
             categoryList: [],
@@ -52,7 +58,13 @@ class MiscStateManager extends Component {
         const currencyQuery = new Query("currencies", true).addFieldList(["label","symbol"]);
         client.post(currencyQuery).then((rawCurrencies)=>{      
             const currencyList = rawCurrencies.currencies.map(c=>({label: c.label, symbol: c.symbol}));
-            const selectedCurrency = currencyList[0]?currencyList[0]:{};
+
+            //Load from localStorage or Set default selected currency
+            const oldSelectedCurrency = JSON.parse(window.localStorage.getItem('selectedCurrency'));
+            const defaultCurrency = currencyList[0]?currencyList[0]:{};
+            const selectedCurrency = oldSelectedCurrency || defaultCurrency;
+
+            
             this.setState({currencyList, selectedCurrency});
         });
     }

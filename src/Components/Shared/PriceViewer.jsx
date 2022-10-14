@@ -9,12 +9,14 @@ class PriceViewer extends Component {
 
     render() {
         
-        const selectedCurrencyPrice = this.props.prices.filter(s=>
-            (s.currency.label===this.context.selectedCurrency.label))[0];
+        const selectedCurrencyPrice = this.props.prices.find(s=>
+            (s.currency.label===this.context.selectedCurrency.label));
 
         return (
             <>
-                {`${selectedCurrencyPrice.currency.symbol}${selectedCurrencyPrice.amount}`}
+                {selectedCurrencyPrice?
+                    `${selectedCurrencyPrice.currency.symbol}${selectedCurrencyPrice.amount}`:
+                    'loading'}
             </>
         );
     }
