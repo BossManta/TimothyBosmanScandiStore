@@ -2,11 +2,12 @@ import React, {Component} from 'react';
 import styled from 'styled-components';
 
 import CartItemPreview from '../Cart/CartItemPreview';
-import { SharedStyledButton, StyledNameHeader } from '../../../SharedStyles';
+import { SharedCssButton, SharedCssFlexCentered, SharedStyledH3 } from '../../GlobalStyling/SharedStyles';
 import CartTotalCost, { getTaxCost } from '../../PageSpecific/Cart/CartTotalCost';
 import CartTotalQuantity from '../../PageSpecific/Cart/CartTotalQuantity';
 import GlobalContext from '../../State Management/GlobalContext'
 
+//Page to display cart
 class Cart extends Component {
     
     static contextType = GlobalContext;
@@ -14,25 +15,29 @@ class Cart extends Component {
     render() { 
         return (
             <StyledCart>
+
                 <h1>CART</h1>
+
                 {this.context.cart.map((p,i) => 
-                    <StyledCartItemPreview showArrows key={i} item={p} index={i}/>
+                    <StyledCartItemPreview key={i} item={p} index={i}/>
                 )}
 
                 <StyledTotalContainer>
-                    <StyledNameHeader>
+                    <SharedStyledH3>
                         Tax 21%: {this.context.selectedCurrency.symbol+getTaxCost(this.context)}
-                    </StyledNameHeader>
+                    </SharedStyledH3>
 
-                    <StyledNameHeader>
+                    <SharedStyledH3>
                         Quantity: <CartTotalQuantity/>
-                    </StyledNameHeader>
+                    </SharedStyledH3>
                     
-                    <StyledNameHeader>
+                    <SharedStyledH3>
                         Total: <CartTotalCost/>
-                    </StyledNameHeader>
+                    </SharedStyledH3>
                 </StyledTotalContainer>
-                <StyledOrderButton>ORDER</StyledOrderButton>
+
+                <StyledOrderButton href="https://www.timothybosman.co.za">ORDER</StyledOrderButton>
+
             </StyledCart>
         );
     }
@@ -52,7 +57,11 @@ const StyledTotalContainer = styled.div`
     border-top: 1px solid lightgray;
 `
 
-const StyledOrderButton = styled(SharedStyledButton)`
+const StyledOrderButton = styled.a`
+    ${SharedCssButton}
+    ${SharedCssFlexCentered}
+    
+    text-decoration: none;
     width: 20em;
     height: 3em;
     margin-top: 1em;

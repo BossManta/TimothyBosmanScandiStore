@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 
 import GlobalContext from '../State Management/GlobalContext';
 
+//Displays price
 class PriceViewer extends Component {
     state = {  } 
 

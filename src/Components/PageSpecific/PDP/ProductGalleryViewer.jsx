@@ -1,9 +1,10 @@
 import React, {Component} from "react";
 import styled from "styled-components";
-import { SharedStyledGalleryImage } from "../../../SharedStyles";
+import { SharedStyledGalleryImage } from "../../GlobalStyling/SharedStyles";
 import SquareImage from "../../Shared/SquareImage";
 
 
+//Displays all product images
 class ProductGalleryViewer extends Component {
   state = { 
     selectedImageIndex: 0
@@ -20,6 +21,7 @@ class ProductGalleryViewer extends Component {
 
     return (
       <StyledProductGalleryViewer>
+
           {/* Renders smaller preview images */}
           <StyledImageSelectorContainer>
             {images.map((g,i)=>(
@@ -31,14 +33,20 @@ class ProductGalleryViewer extends Component {
             ))}          
           </StyledImageSelectorContainer>
 
+
           {/* Renders main image */}
           <StyledGalleryImageContainer>
-            <SharedStyledGalleryImage src={images&&images[this.state.selectedImageIndex]}/>
+            <StyledGalleryImage src={images&&images[this.state.selectedImageIndex]}/>
           </StyledGalleryImageContainer>
+
       </StyledProductGalleryViewer>
     );
   }
 }
+
+const StyledGalleryImage = styled(SharedStyledGalleryImage)`
+  object-position: top;
+`
 
 const StyledProductGalleryViewer = styled.div`
    display: flex;
@@ -50,20 +58,18 @@ const StyledProductGalleryViewer = styled.div`
 
 const StyledImageSelectorContainer = styled.div`
   width:min(15%,5em);
+  padding: 0.2em;
   overflow-y: auto;
   overflow-x: hidden;
+  
+   /* Hide scrollbar for Chrome, Safari and Opera */
+  &::-webkit-scrollbar {
+    display: none;
+  }
 
-   //Make the scroll bar a little thinner
-  scrollbar-width: thin;  
-  ::-webkit-scrollbar {
-      width: 0.6em;
-  }
-  ::-webkit-scrollbar-track {
-      background: whitesmoke;
-  }
-  ::-webkit-scrollbar-thumb {
-      background-color: lightgray;
-  }
+  /* Hide scrollbar for IE, Edge and Firefox */
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
 `
 
 const StyledGalleryImageContainer = styled.div`

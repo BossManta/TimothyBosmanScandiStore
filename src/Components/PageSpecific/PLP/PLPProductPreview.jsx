@@ -7,7 +7,8 @@ import PLPImagePreview from './PLPImagePreview';
 import AttributeSelectionModal from '../../Shared/AttributeSelectionModal';
 import GlobalContext from '../../State Management/GlobalContext';
 
-class ProductPreview extends Component {
+//Displays a basic preview of product in PLP
+class PLPProductPreview extends Component {
 
     state = {
         isAttributeModelVisable: false
@@ -17,9 +18,10 @@ class ProductPreview extends Component {
 
     addToCartIfCan = (e, product) => {
         e.preventDefault();
+
+        //Directly adds to cart if product doesn't have attributes
         if (product.attributes.length===0 && product.inStock)
         {         
-
             const {name, gallery, brand, prices, attributes} = this.props.product;
             this.context.addItemToCart({
                 details:{name, gallery, brand, prices, attributes},
@@ -27,6 +29,8 @@ class ProductPreview extends Component {
                 count:1
             });
         }
+
+        //Opens attribute picker modal
         else
         {
             this.setState({isAttributeModelVisable: true})
@@ -39,17 +43,18 @@ class ProductPreview extends Component {
 
         return (
             <StyledPoductPreview to={`/product/${id}`} state={this.props.product}>
+                
+                {/* Renders product info (Image, Name, Brand, Price) */}
                 <StyledPreviewContainer>
-                    <PLPImagePreview img={gallery[0]}  inStock={inStock}>
-                        <h1>{inStock?'':'OUT OF STOCK'}</h1>
-                    </PLPImagePreview>
+                    <PLPImagePreview img={gallery[0]}  inStock={inStock} />
                     <p>{`${brand}: ${name}`}</p>
                     <PriceViewer prices={prices}/>
                 </StyledPreviewContainer>
 
+                {/* Quick add to cart button */}
                 <StyledAddToCartButtonContainer>
                     <StyledAddToCartButton onClick={(e)=>this.addToCartIfCan(e, this.props.product)} disabled={!inStock}>
-                        <img style={{height:"40%", filter:" brightness(500%)"}} src={require("../../../Images/Cart.png")} alt="Cart Modal"/>
+                        <StyledCartIcon src={require("../../../Images/Cart.png")} alt="Cart Modal"/>
                     </StyledAddToCartButton>
                 </StyledAddToCartButtonContainer>
 
@@ -61,10 +66,18 @@ class ProductPreview extends Component {
                                                 attributes={attributes}
                                                 setIsOpen={()=>this.setState({isAttributeModelVisable: false})}/>
                 }
+
             </StyledPoductPreview>
         );
     }
 }
+
+const StyledCartIcon = styled.img`
+    height: 40%;
+
+    //Makes Icon White
+    filter: brightness(500%);
+`
 
 const StyledAddToCartButtonContainer = styled.div`
     position: absolute;
@@ -115,4 +128,4 @@ const StyledPreviewContainer = styled.div`
     padding: 1em;
 `
 
-export default ProductPreview;
+export default PLPProductPreview;

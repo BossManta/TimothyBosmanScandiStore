@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import styled from 'styled-components';
-import { SharedCssFlexCentered } from '../../SharedStyles';
+import { SharedCssFlexCentered } from '../GlobalStyling/SharedStyles';
 
+//Reusable modal
 class Modal extends Component {
     state = {  }
     

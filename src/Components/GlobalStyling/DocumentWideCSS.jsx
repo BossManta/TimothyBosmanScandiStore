@@ -1,5 +1,6 @@
 import { createGlobalStyle } from 'styled-components';
 
+//Sets CSS for whole website
 const GlobalStyle = createGlobalStyle`
     :root {
         --mainGreen: #5ECE7B;

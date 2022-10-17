@@ -1,11 +1,14 @@
 import React, {Component} from 'react';
 import styled from 'styled-components';
+import { SharedStyledH3 } from '../GlobalStyling/SharedStyles';
 import GlobalContext from '../State Management/GlobalContext';
 
+//Displays a single attribute (e.g. size)
 class SingleAttributeViewer extends Component {
 
     static contextType = GlobalContext;
 
+    //Updates pending item with selected attribute
     handleSelectionUpdate = (attributeName, selectedID) => {
         if (!this.props.staticSelection)
         {
@@ -13,7 +16,7 @@ class SingleAttributeViewer extends Component {
         }
     }
 
-
+    //Used to see if current blip is selected
     checkIfSelected = (a,v) => {
         const staticSelection = this.props.staticSelection;
 
@@ -32,18 +35,26 @@ class SingleAttributeViewer extends Component {
 
         return (
             <>
-                <h3 style={{marginBottom: "0.3em", marginTop:0}}>{`${a.name.toUpperCase()}:`}</h3>
+                {/* Render attribute name */}
+                <SharedStyledH3 isBold={!this.props.isModal}
+                                style={{marginBottom: "0.5em"}}>
+                                    
+                    {`${a.name.toUpperCase()}:`}
+                </SharedStyledH3>
+                
+                {/* Show attributes */}
                 <div style={{display:"flex"}}>
                     {a.items.map((v,i)=>(
                         <React.Fragment key={i}>
 
+                            {/* If swatch display as colored squares */}
                             {isSwatch && 
                             <StyledSwatchBlip   onClick={()=>this.handleSelectionUpdate(a.name, v.value)}
                                                 selected={this.checkIfSelected(a,v)}
                                                 color={v.value}
                             />}
 
-                            
+                            {/* If not swatch display attribute values */}
                             {!isSwatch && 
                             <StyledAttributeBlip    onClick={()=>this.handleSelectionUpdate(a.name, v.value)}
                                                     selected={this.checkIfSelected(a,v)}>

@@ -4,8 +4,9 @@ import styled from 'styled-components';
 import GlobalContext from '../../State Management/GlobalContext';
 import Modal from '../../Shared/Modal';
 
+
+// A modal to select desired currency
 class CurrencySelectorModal extends Component {
-    state = {  } 
 
     static contextType = GlobalContext;
 

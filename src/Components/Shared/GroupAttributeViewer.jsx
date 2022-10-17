@@ -3,6 +3,7 @@ import React, {Component} from 'react';
 import SingleAttributeViewer from './SingleAttributeViewer';
 import GlobalContext from '../State Management/GlobalContext';
 
+//Displays all attributes of a product
 class GroupAttributeViewer extends Component {
 
     static contextType = GlobalContext;
@@ -17,7 +18,7 @@ class GroupAttributeViewer extends Component {
         return (
             <>
                 {attributes.map(a=>(
-                    <SingleAttributeViewer key={a.name} attributeData={a} staticSelection={staticSelection}/>
+                    <SingleAttributeViewer isModal={this.props.isModal} key={a.name} attributeData={a} staticSelection={staticSelection}/>
                 ))}
             </>
         );

@@ -3,12 +3,13 @@ import styled from 'styled-components';
 
 import Modal from '../../Shared/Modal';
 import CartItemPreview from './CartItemPreview';
-import { StyledNameHeader, StyledBrandHeader, SharedCssFlexCentered, SharedCssButton } from '../../../SharedStyles';
+import { SharedCssFlexCentered, SharedCssButton, SharedStyledH2, SharedStyledH3 } from '../../GlobalStyling/SharedStyles';
 import CartTotalCost from './CartTotalCost';
 import CartTotalQuantity from './CartTotalQuantity';
 import GlobalContext from '../../State Management/GlobalContext';
 import { Link } from 'react-router-dom';
 
+//Modal version of cart page
 class CartModal extends Component {
     state = {  } 
 
@@ -21,23 +22,26 @@ class CartModal extends Component {
                 <StyledModalContainer onClick={(e)=>e.stopPropagation()}>
                     
                     <div style={{height: "10%"}}>
-                        <StyledBrandHeader>My Bag, <CartTotalQuantity/> Items </StyledBrandHeader>
+                        <SharedStyledH2 isBold>My Bag, <CartTotalQuantity/> Items </SharedStyledH2>
                     </div>
 
+                    {/* List products in cart */}
                     <StyledItemPreviewContainer>
                         {this.context.cart.map((p,i) => 
-                            <StyledCartItemPreview key={i} item={p} index={i}/>
+                            <StyledCartItemPreview isModal key={i} item={p} index={i}/>
                         )}
                     </StyledItemPreviewContainer>
                     
-                    <div style={{display: "flex", justifyContent: "space-between", alignItems:"center", height: "10%"}}>
-                        <StyledNameHeader>Total:</StyledNameHeader>
-                        <StyledBrandHeader><CartTotalCost/></StyledBrandHeader>
-                    </div>
+                    {/* Price Total */}
+                    <PriceTotalContainer>
+                        <SharedStyledH3 isRoboto isBold>Total:</SharedStyledH3>
+                        <SharedStyledH3 isBold><CartTotalCost/></SharedStyledH3>
+                    </PriceTotalContainer>
 
+                    {/* Check Out & Go to Cart page buttons */}
                     <StyledButtonContainer>
-                        <StyledViewBagButton  onClick={()=>this.props.setIsOpen(false)} to={`/cart`}>View Bag</StyledViewBagButton>
-                        <StyledCheckOutButton  onClick={()=>this.props.setIsOpen(false)} href="https://www.timothybosman.co.za">Check Out</StyledCheckOutButton>
+                        <StyledViewBagButton  onClick={()=>this.props.setIsOpen(false)} to={`/cart`}>VIEW BAG</StyledViewBagButton>
+                        <StyledCheckOutButton  onClick={()=>this.props.setIsOpen(false)} href="https://www.timothybosman.co.za">CHECK OUT</StyledCheckOutButton>
                     </StyledButtonContainer>
                     
                 </StyledModalContainer>
@@ -45,6 +49,13 @@ class CartModal extends Component {
         );
     }
 }
+
+const PriceTotalContainer = styled.div`
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 10%;
+`
 
 const StyledButtonContainer = styled.div`
     display: flex;

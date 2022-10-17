@@ -2,9 +2,10 @@ import React, {Component} from 'react';
 import { Query, client, Field } from '@tilework/opus';
 import styled from 'styled-components';
 
-import ProductPreview from './ProductPreview';
+import PLPProductPreview from './PLPProductPreview';
 import GlobalContext from '../../State Management/GlobalContext';
 
+//Product List Page. Lists all products in selected category.
 class PLP extends Component {
 
   state = {
@@ -56,18 +57,20 @@ class PLP extends Component {
 
       return (
           <StyledPLP>
+
+              {/* Category Name heading */}
               <StyledPLPHeading>
                 {this.capatalizeFirst(this.context.selectedCategory)}
               </StyledPLPHeading>
               
-              <StyledProductViewerContainer>
-                
+              {/* List all products in category */}
+              <StyledProductViewerContainer>   
                   {this.state.products.map(p=>(
-                      <ProductPreview key={p.id}
+                      <PLPProductPreview key={p.id}
                                       product={p}/>
                   ))}
-
               </StyledProductViewerContainer>
+
           </StyledPLP>
       );
   }

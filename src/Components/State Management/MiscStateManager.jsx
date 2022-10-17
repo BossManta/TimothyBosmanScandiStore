@@ -3,6 +3,7 @@ import { client, Query } from '@tilework/opus';
 
 import { MCProvider } from './MiscContext';
 
+//A globally available context to handle miscellaneous state
 class MiscStateManager extends Component {
     
     setState(state)
@@ -12,6 +13,8 @@ class MiscStateManager extends Component {
 
     ////////////////////////////////
     //Globally available Functions//
+    ////////////////////////////////
+
     setSelectedCurrency = (selectedCurrency) => {
         window.localStorage.setItem('selectedCurrency', JSON.stringify(selectedCurrency));
         this.setState({selectedCurrency});

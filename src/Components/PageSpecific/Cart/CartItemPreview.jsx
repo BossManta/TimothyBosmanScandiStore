@@ -1,12 +1,13 @@
 import React, {Component} from 'react';
 import styled from 'styled-components';
-import { SharedCssFlexCentered, StyledBrandHeader, StyledNameHeader } from '../../../SharedStyles';
+import { SharedCssFlexCentered, SharedStyledH2, SharedStyledH3 } from '../../GlobalStyling/SharedStyles';
 
 import GroupAttributeViewer from '../../Shared/GroupAttributeViewer';
 import PriceViewer from '../../Shared/PriceViewer';
 import CartImageGallery from './CartImageGallery';
 import GlobalContext from '../../State Management/GlobalContext';
 
+//Display Cart Info (e.g. name, brand, price, selected attributes ect)
 class CartItemPreview extends Component {
     state = {  } 
 
@@ -28,32 +29,38 @@ class CartItemPreview extends Component {
 
         const {name, brand, prices, attributes, gallery} = this.props.item.details;
         const {attributeSelections, count} = this.props.item;
+        const {isModal} = this.props;
 
         return (
             <StyledCartItemPreview className={this.props.className}>
 
                 <div style={{width:"60%"}}>
-                    <StyledBrandHeader>{brand}</StyledBrandHeader>
-                    <StyledNameHeader>{name}</StyledNameHeader>
-                    <StyledNameHeader>
+
+                    {/* Product Brand & Name */}
+                    <SharedStyledH2 weight={isModal?300:600}>{brand}</SharedStyledH2>
+                    <SharedStyledH2 weight={300}>{name}</SharedStyledH2>
+
+                    {/* Price */}
+                    <SharedStyledH3 weight={500}>
                         <PriceViewer prices={prices}/>
-                    </StyledNameHeader>
+                    </SharedStyledH3>
 
-
+                    {/* Attributes */}
                     <div style={{fontSize: "80%"}}>
-                        <GroupAttributeViewer attributes={attributes} staticSelection={attributeSelections}/>
+                        <GroupAttributeViewer isModal={this.props.isModal} attributes={attributes} staticSelection={attributeSelections}/>
                     </div>
                 </div>
 
                 <StyledGalleryContainer>
                     
+                    {/* Buttons to change product quantity */}
                     <StyledCountButtonContainer>
                         <StyledCountButton onClick={this.incrementItemCount}>+</StyledCountButton>
                         <p style={{textAlign: "center"}}>{count}</p>
                         <StyledCountButton onClick={this.decrementItemCount}>-</StyledCountButton>
                     </StyledCountButtonContainer>
 
-                    <CartImageGallery showArrows={this.props.showArrows} gallery={gallery}/>
+                    <CartImageGallery showArrows={!this.props.isModal} gallery={gallery}/>
                 </StyledGalleryContainer>
 
             </StyledCartItemPreview>

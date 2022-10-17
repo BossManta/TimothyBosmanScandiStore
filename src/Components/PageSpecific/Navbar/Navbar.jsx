@@ -1,44 +1,32 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 
-import GlobalContext from '../../State Management/GlobalContext';
+import CategorySelectionButtons from './CategorySelectionButtons';
 import NavModalButtons from './NavModalButtons';
 
+//Navbar for the whole website
 class Navbar extends Component {
-
-    static contextType = GlobalContext;
-
-    handleCategorySelection = (categoryName) => 
-    {
-        this.context.setSelectedCategory(categoryName)
-    }
 
     render() 
     { 
         return (
             <StyledNavbar>
-                <nav style={{paddingLeft:20, width:"30%", display:"flex"}}>
-                    {this.context.categoryList.map(c=>(
-                        <StyledNavLink    to={"/"}
-                                            key={c.id}
-                                            selected={this.context.selectedCategory===c.name}
-                                            onClick={()=>this.handleCategorySelection(c.name)}>
 
-                            {c.name.toUpperCase()}
-                        </StyledNavLink>
-                    ))}
-                </nav>
+                {/* Category selection buttons */}
+                <CategorySelectionButtons />
 
 
+                {/* Green logo */}
                 <StyledLogo>
                     <img src={require('../../../Images/GreenLogo.png')} alt="Green Logo"/>
                 </StyledLogo>
 
 
+                {/* Modal buttons (Cart Modal, Currency Selector Modal)  */}
                 <StyledNavModalButtonsContainer>
                     <NavModalButtons />
                 </StyledNavModalButtonsContainer>
+
             </StyledNavbar>
         );
     }
@@ -73,28 +61,6 @@ const StyledNavbar = styled.div`
     padding-right: 5em;
     @media screen and (max-width: 700px) {
         padding: 0.6em;
-    }
-`
-
-const StyledNavLink = styled(Link)`
-    text-decoration: none;
-    font-size: 80%;
-    color: black;
-    padding: 1.2em;
-    border-radius: 0;
-    border: none;
-    background-color: white; 
-
-    ${props => props.selected &&
-        css`
-            border-bottom: solid var(--mainGreen) 2px;
-            color: var(--mainGreen);  
-        `
-    }
-
-    &:hover
-    {
-        background-color: #ddd;
     }
 `
 

@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import { SharedCssFlexCentered, SharedStyledGalleryImage } from '../../../SharedStyles';
+import { SharedCssFlexCentered, SharedStyledGalleryImage } from '../../GlobalStyling/SharedStyles';
 
+//Displays image gallery for products in cart
 class CartImageGallery extends Component {
     state = { 
         selectedImageIndex: 0
@@ -20,7 +21,10 @@ class CartImageGallery extends Component {
     render() { 
         return (
             <StyledGalleryImageContainer>
+
                 <SharedStyledGalleryImage src={this.props.gallery[this.state.selectedImageIndex]} alt="Cart Item Preview"/>
+                
+                {/* Arrows to change image */}
                 {this.props.showArrows && this.props.gallery.length>1 &&
                     <StyledImageArrowContainer>
                     <StyledImageArrowButton onClick={this.previousImage}>
@@ -30,6 +34,7 @@ class CartImageGallery extends Component {
                         <StyledGalleryArrowIcon src={require("../../../Images/GalleryArrow.png")}/>
                     </StyledImageArrowButton>
                 </StyledImageArrowContainer>}
+
             </StyledGalleryImageContainer>
         );
     }

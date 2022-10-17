@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import {  client } from '@tilework/opus';
 
-import GlobalStyle from './Components/GlobalStyle'
+import GlobalStyle from './Components/GlobalStyling/DocumentWideCSS'
 import Navbar from './Components/PageSpecific/Navbar/Navbar'
 import PLP from './Components/PageSpecific/PLP/PLP'
 import Cart from './Components/PageSpecific/Cart/Cart';

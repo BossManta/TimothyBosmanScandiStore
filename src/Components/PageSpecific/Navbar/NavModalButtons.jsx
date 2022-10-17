@@ -6,6 +6,7 @@ import CartModal from '../../PageSpecific/Cart/CartModal';
 import CurrencySelectorModal from './CurrencySelectorModal';
 import CartTotalQuantity, {getTotalQuantity} from '../Cart/CartTotalQuantity';
 
+//Buttons to open modals (Currency selection modal, Cart modal)
 class NavModalButtons extends Component {
 
     state = {
@@ -39,12 +40,12 @@ class NavModalButtons extends Component {
 
                 {/* Cart Button */}
                 <StyledNavModalButton onClick={() => this.setCartModalVisibility(true)}>
-                    <div style={{position:"relative", paddingTop:"0.7em", paddingRight:"0.6em"}}>
+                    <StyledCartIconContainer>
                         <img src={require("../../../Images/Cart.png")} alt="Cart" height="15em"/>
                         <StyledCartCountBubble quantity={getTotalQuantity(this.context)}>
                             <CartTotalQuantity />
                         </StyledCartCountBubble>
-                    </div>
+                    </StyledCartIconContainer>
                 </StyledNavModalButton>
 
 
@@ -52,9 +53,10 @@ class NavModalButtons extends Component {
                 {/* Modals*/}
                 {this.state.isCurrencyModalOpen && 
                 <CurrencySelectorModal setIsOpen={this.setCurrencyModalVisibility}/>}
-                
+
                 {this.state.isCartModalOpen && 
                 <CartModal setIsOpen={this.setCartModalVisibility}/>}
+
             </>
         );
     }
@@ -69,6 +71,12 @@ const StyledNavModalButton = styled.button`
     -webkit-user-select: none; /* Safari */
     -ms-user-select: none; /* IE 10 and IE 11 */
     user-select: none; /* Standard syntax */
+`
+
+const StyledCartIconContainer = styled.div`
+    position: relative;
+    padding-top: 0.7em;
+    padding-right: 0.6em;
 `
 
 const StyledCurrencySelectorArrow = styled.img`

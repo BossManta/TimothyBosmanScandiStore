@@ -1,13 +1,18 @@
 import styled, {css} from "styled-components";
 
-export const StyledBrandHeader = styled.h1`
+export const SharedCssHeading = css`
     font-size: 100%;
-    font-weight: bold;
+    font-weight: ${({isBold}) => isBold?"bold":"normal"};
+    font-family: ${({isRoboto}) => isRoboto && 'Roboto'}, 'Raleway', sans-serif;
+    font-weight: ${({weight}) => weight}
 `
 
-export const StyledNameHeader = styled.h1`
-    font-size: 100%;
-    font-weight: normal;
+export const SharedStyledH2 = styled.h2`
+    ${SharedCssHeading}
+`
+
+export const SharedStyledH3 = styled.h3`
+    ${SharedCssHeading}
 `
 
 
@@ -21,7 +26,6 @@ export const SharedStyledGalleryImage = styled.img`
     right: 0;
     top: 0;
 `
-
 
 
 

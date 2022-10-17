@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import { SharedCssFlexCentered } from '../../../SharedStyles';
+import { SharedCssFlexCentered } from '../../GlobalStyling/SharedStyles';
 
+// 404 page (displayed if page or product can't be found)
 class Page404 extends Component {
     state = {  } 
     render() { 

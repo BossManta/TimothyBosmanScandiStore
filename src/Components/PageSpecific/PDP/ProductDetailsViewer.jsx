@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import { StyledBrandHeader } from '../../../SharedStyles';
+import { SharedStyledH3 } from '../../GlobalStyling/SharedStyles';
 import GroupAttributeViewer from '../../Shared/GroupAttributeViewer';
 import PriceViewer from '../../Shared/PriceViewer';
 import GlobalContext from '../../State Management/GlobalContext';
 import AddToCartButton from './AddToCartButton';
 
+//Displays product details (e.g. Name, Brand, Description etc)
 class ProductDetailsViewer extends Component {
 
     static contextType = GlobalContext;
@@ -16,16 +17,23 @@ class ProductDetailsViewer extends Component {
 
         return (
             <StyledProductDetailsViewer>
+
+                {/*Product Brand & Name */}
                 <h1>{brand}</h1>
                 <h1 style={{fontWeight:'normal'}}>{name}</h1>
                 
+                {/* Product attributes (Can be selected) */}
                 <GroupAttributeViewer attributes={attributes}/>
-                {prices?
-                    <StyledBrandHeader><PriceViewer prices={prices}/></StyledBrandHeader>
-                :<StyledBrandHeader>Loading...</StyledBrandHeader>}
-
+                
+                {/* Product Price */}
+                <SharedStyledH3 isBold>
+                    {prices?<PriceViewer prices={prices}/>:"Loading..."}
+                </SharedStyledH3>
+                
+                {/* Add to cart (if in stock and attributes selected) */}
                 <StyledAddToCartButton inStock={inStock}/>
 
+                {/* Product discription (DANGER: XSS is a possibility) */}
                 <StyledDescription dangerouslySetInnerHTML={{__html: description}}/>
             </StyledProductDetailsViewer>
         );

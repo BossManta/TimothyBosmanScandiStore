@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-// import { useParams } from 'react-router-dom';
 import { Query, client, Field } from '@tilework/opus';
 import styled from 'styled-components';
 
@@ -8,6 +7,7 @@ import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import GlobalContext from '../../State Management/GlobalContext';
 import ProductDetailsViewer from './ProductDetailsViewer';
 
+//Product Details Page (Page to show all info on product)
 class PDPClass extends Component {
     state = { 
         productData: {}
@@ -19,7 +19,7 @@ class PDPClass extends Component {
     {
         this.context.resetPendingItem();
 
-        //Check if 
+        //Uses data passed down from PLP if available.
         const productData = this.props.location.state ? this.props.location.state : await this.fetchProductData(this.props.params.id);
         
         //If page doesnt exist go to 404 page
@@ -61,21 +61,24 @@ class PDPClass extends Component {
 
         return (
             <StyledPDP>
+                
+                {/* Product image gallery */}
                 <StyledGalleryContainer>
                     <ProductGalleryViewer images={gallery}/>
                 </StyledGalleryContainer>
                 
+                {/* Product details */}
                 <StyledDetailsContainer>
                     <ProductDetailsViewer productData={this.state.productData}/>
                 </StyledDetailsContainer>
+
             </StyledPDP>
         );
     }
 }
  
 
-//Functional wrapper to allow for hooks.
-//The useParams() hook is needed to get product id.
+//Functional wrapper to allow for hooks (react-router has primarly switched to functional components).
 const PDP = (props) => (
     <PDPClass 
         {...props}
