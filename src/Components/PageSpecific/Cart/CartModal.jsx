@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
 
 import Modal from '../../Shared/Modal';
 import CartItemPreview from './CartItemPreview';
-import { StyledNameHeader, StyledBrandHeader } from '../../../SharedStyles';
+import { StyledNameHeader, StyledBrandHeader, SharedCssFlexCentered, SharedCssButton } from '../../../SharedStyles';
 import CartTotalCost from './CartTotalCost';
 import CartTotalQuantity from './CartTotalQuantity';
 import GlobalContext from '../../State Management/GlobalContext';
+import { Link } from 'react-router-dom';
 
 class CartModal extends Component {
     state = {  } 
@@ -26,7 +26,7 @@ class CartModal extends Component {
 
                     <StyledItemPreviewContainer>
                         {this.context.cart.map((p,i) => 
-                            <CartItemPreview key={i} item={p} index={i}/>
+                            <StyledCartItemPreview key={i} item={p} index={i}/>
                         )}
                     </StyledItemPreviewContainer>
                     
@@ -37,7 +37,7 @@ class CartModal extends Component {
 
                     <StyledButtonContainer>
                         <StyledViewBagButton  onClick={()=>this.props.setIsOpen(false)} to={`/cart`}>View Bag</StyledViewBagButton>
-                        <StyledViewBagButton  onClick={()=>this.props.setIsOpen(false)} to={`/cart`}>Check Out</StyledViewBagButton>
+                        <StyledCheckOutButton  onClick={()=>this.props.setIsOpen(false)} href="https://www.timothybosman.co.za">Check Out</StyledCheckOutButton>
                     </StyledButtonContainer>
                     
                 </StyledModalContainer>
@@ -49,16 +49,30 @@ class CartModal extends Component {
 const StyledButtonContainer = styled.div`
     display: flex;
     justify-content: space-between;
+    height: 3em;
 `
 
 const StyledViewBagButton = styled(Link)`
-    background-color: limeGreen;
-    color: white;
-    font-weight: bold;
+    ${SharedCssFlexCentered}
     text-decoration: none;
-    width: 35%;
+    width: 45%;
     text-align: center;
-    padding: 1em;
+
+    color: black;
+    border: black 1px solid;
+    font-weight: bold;
+
+    &:hover{
+        background-color: lightgray;
+    }
+`
+
+const StyledCheckOutButton = styled.a`
+    ${SharedCssButton}
+    ${SharedCssFlexCentered}
+    text-decoration: none;
+    width: 45%;
+    text-align: center;
 `
 
 const StyledItemPreviewContainer = styled.div`
@@ -87,6 +101,10 @@ const StyledModalContainer = styled.div`
     right: 5%;
     position: fixed;
     font-size: small;
+`
+
+const StyledCartItemPreview = styled(CartItemPreview)`
+    margin-bottom: 2em;
 `
 
 export default CartModal;

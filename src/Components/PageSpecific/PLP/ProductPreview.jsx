@@ -19,11 +19,6 @@ class ProductPreview extends Component {
         e.preventDefault();
         if (product.attributes.length===0 && product.inStock)
         {         
-            // this.context.resetPendingItem();
-            // console.log(this.context.pendingItem);
-            // const {name, gallery, brand, prices, attributes} = this.props.product;
-            // this.context.setPendingItemDetails({name, brand, gallery, prices, attributes});
-            // this.context.addPendingItemToCart();
 
             const {name, gallery, brand, prices, attributes} = this.props.product;
             this.context.addItemToCart({
@@ -54,7 +49,7 @@ class ProductPreview extends Component {
 
                 <StyledAddToCartButtonContainer>
                     <StyledAddToCartButton onClick={(e)=>this.addToCartIfCan(e, this.props.product)} disabled={!inStock}>
-                        <img style={{height:"40%", filter:" brightness(500%)"}} src={require("../../../Images/Cart.png")} alt="test"/>
+                        <img style={{height:"40%", filter:" brightness(500%)"}} src={require("../../../Images/Cart.png")} alt="Cart Modal"/>
                     </StyledAddToCartButton>
                 </StyledAddToCartButtonContainer>
 
@@ -87,7 +82,7 @@ const StyledAddToCartButtonContainer = styled.div`
 `
 
 const StyledAddToCartButton = styled.button`
-    background-color: ${({disabled})=>disabled?"grey":"limegreen"};
+    background-color: ${({disabled})=>disabled?"grey":"var(--mainGreen)"};
     position: absolute;
     right: 9%;
     bottom: 6em;
@@ -104,7 +99,7 @@ const StyledAddToCartButton = styled.button`
 const StyledPoductPreview = styled(Link)`
     position: relative;
     width: 33%;
-    min-width: 350px;
+    min-width: 20em;
     text-decoration: none;
     color: black;
 

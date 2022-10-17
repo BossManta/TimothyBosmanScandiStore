@@ -4,6 +4,7 @@ import { StyledBrandHeader } from '../../../SharedStyles';
 import GroupAttributeViewer from '../../Shared/GroupAttributeViewer';
 import PriceViewer from '../../Shared/PriceViewer';
 import GlobalContext from '../../State Management/GlobalContext';
+import AddToCartButton from './AddToCartButton';
 
 class ProductDetailsViewer extends Component {
 
@@ -14,7 +15,7 @@ class ProductDetailsViewer extends Component {
         const {name, brand, inStock, description, attributes, prices} = this.props.productData;
 
         return (
-            <div style={{paddingLeft: "2em", paddingRight: "2em"}}>
+            <StyledProductDetailsViewer>
                 <h1>{brand}</h1>
                 <h1 style={{fontWeight:'normal'}}>{name}</h1>
                 
@@ -23,26 +24,27 @@ class ProductDetailsViewer extends Component {
                     <StyledBrandHeader><PriceViewer prices={prices}/></StyledBrandHeader>
                 :<StyledBrandHeader>Loading...</StyledBrandHeader>}
 
-                <StyledAddToCartButton  inStock={inStock}
-                                        disabled={!inStock}
-                                        onClick={()=>this.context.addPendingItemToCart()}>
-                    {inStock?"ADD TO CART":"OUT OF STOCK"}
-                </StyledAddToCartButton>
+                <StyledAddToCartButton inStock={inStock}/>
 
-                <div className="content" dangerouslySetInnerHTML={{__html: description}}></div>
-            </div>
+                <StyledDescription dangerouslySetInnerHTML={{__html: description}}/>
+            </StyledProductDetailsViewer>
         );
     }
 }
 
-const StyledAddToCartButton = styled.button`
-    background-color: ${({inStock})=>inStock?"limegreen":"grey"};
-    margin: 0px;
-    padding: 15px;
-    width: 100%;
-    border: none;
-    color: white;
-    font-weight: bold;
+const StyledProductDetailsViewer = styled.div`
+    padding-left: 15%;
+    padding-right: 15%;
 `
+
+const StyledAddToCartButton = styled(AddToCartButton)`
+    padding: 1.5em;
+    width: 100%;
+`
+
+const StyledDescription = styled.div`
+    margin-top: 2em;
+`
+
  
 export default ProductDetailsViewer;

@@ -65,10 +65,10 @@ const StyledSwatchBlip = styled.button`
     border: none;
     box-shadow:
         0 0 0 1px white,
-        0 0 0 2px ${(p) => p.selected?"limeGreen":"transparent"},
+        0 0 0 2px ${(p) => p.selected?"var(--mainGreen)":"transparent"},
         0px 0px 5px 0px lightGray;
 
-    margin: 2px;
+    margin: 0.2em;
 
     background: ${(p) => p.color};
     aspect-ratio: 1/1;

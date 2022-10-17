@@ -1,5 +1,6 @@
 import React, {Component} from "react";
 import styled from "styled-components";
+import { SharedStyledGalleryImage } from "../../../SharedStyles";
 import SquareImage from "../../Shared/SquareImage";
 
 
@@ -31,9 +32,9 @@ class ProductGalleryViewer extends Component {
           </StyledImageSelectorContainer>
 
           {/* Renders main image */}
-          <StyledTestImageContainer>
-            <StyledTestImage src={images&&images[this.state.selectedImageIndex]}/>
-          </StyledTestImageContainer>
+          <StyledGalleryImageContainer>
+            <SharedStyledGalleryImage src={images&&images[this.state.selectedImageIndex]}/>
+          </StyledGalleryImageContainer>
       </StyledProductGalleryViewer>
     );
   }
@@ -65,17 +66,7 @@ const StyledImageSelectorContainer = styled.div`
   }
 `
 
-const StyledTestImage = styled.img`
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    object-position: top;
-    position: absolute;
-    right: 0;
-    top: 0;
-`
-
-const StyledTestImageContainer = styled.div`
+const StyledGalleryImageContainer = styled.div`
     display: inline-block;
     position: relative;
     height: 100%;

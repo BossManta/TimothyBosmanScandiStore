@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
+import { SharedCssFlexCentered } from '../../../SharedStyles';
 import SquareImage from '../../Shared/SquareImage';
 
 class PLPImagePreview extends Component {
@@ -16,7 +17,8 @@ class PLPImagePreview extends Component {
 }
 
 const StyledOutOfStockOverlay = styled.h2`
-    display: flex;
+    ${SharedCssFlexCentered}
+    
     position: absolute;
     left: 0;
     right: 0;
@@ -27,9 +29,6 @@ const StyledOutOfStockOverlay = styled.h2`
     background-color: white;
     color: lightgray;
     opacity: 0.6;
-
-    justify-content: center;
-    align-items: center;
 `
  
 export default PLPImagePreview;

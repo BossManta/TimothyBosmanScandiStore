@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import styled from 'styled-components';
-import { StyledBrandHeader, StyledNameHeader } from '../../../SharedStyles';
+import { SharedCssFlexCentered, StyledBrandHeader, StyledNameHeader } from '../../../SharedStyles';
 
 import GroupAttributeViewer from '../../Shared/GroupAttributeViewer';
 import PriceViewer from '../../Shared/PriceViewer';
@@ -69,7 +69,7 @@ const StyledCartItemPreview = styled.div`
 `
 
 const StyledGalleryContainer = styled.div`
-    width: min(45%, 10em);
+    width: min(60%, 12em);
     display: flex;
     justify-content: right;
 `
@@ -83,9 +83,8 @@ const StyledCountButtonContainer = styled.div`
 `
 
 const StyledCountButton = styled.button`
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
+    ${SharedCssFlexCentered}
+
     border: 1px solid gray;
     width: 1em;
     height: 1em;

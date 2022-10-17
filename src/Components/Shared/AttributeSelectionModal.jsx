@@ -3,9 +3,9 @@ import styled from 'styled-components';
 
 import Modal from './Modal';
 import GroupAttributeViewer from './GroupAttributeViewer';
-import { StyledBrandHeader } from '../../SharedStyles';
-import { StyledButton } from '../../SharedStyles';
+import { SharedCssFlexCentered, StyledBrandHeader } from '../../SharedStyles';
 import GlobalContext from '../State Management/GlobalContext';
+import AddToCartButton from '../PageSpecific/PDP/AddToCartButton';
 
 class AttributeSelectionModal extends Component {
     state = {  } 
@@ -47,7 +47,7 @@ class AttributeSelectionModal extends Component {
                     <div>
                         <GroupAttributeViewer attributes={attributes}/>
                     </div>
-                    <StyledButton onClick={this.handleSubmit}>Submit</StyledButton>
+                    <StyledAddToCartButton inStock={true}/>
                 </StyledAttributeModalContainer>
             </Modal>
         );
@@ -55,13 +55,17 @@ class AttributeSelectionModal extends Component {
 }
 
 const StyledAttributeModalContainer = styled.div`
+    ${SharedCssFlexCentered}
+
     background-color: white;
     padding: 3em;
-    
-    display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
+`
+
+const StyledAddToCartButton = styled(AddToCartButton)`
+    width: 90%;
+    height: 3em;
+    margin-top: 3em;
 `
 
 export default AttributeSelectionModal;

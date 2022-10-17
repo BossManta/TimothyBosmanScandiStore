@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
+import { SharedCssFlexCentered, SharedStyledGalleryImage } from '../../../SharedStyles';
 
 class CartImageGallery extends Component {
     state = { 
@@ -18,9 +19,9 @@ class CartImageGallery extends Component {
     
     render() { 
         return (
-            <StyledTestImageContainer>
-                <StyledTestImage src={this.props.gallery[this.state.selectedImageIndex]} alt="Cart Item Preview"/>
-                {this.props.showArrows &&
+            <StyledGalleryImageContainer>
+                <SharedStyledGalleryImage src={this.props.gallery[this.state.selectedImageIndex]} alt="Cart Item Preview"/>
+                {this.props.showArrows && this.props.gallery.length>1 &&
                     <StyledImageArrowContainer>
                     <StyledImageArrowButton onClick={this.previousImage}>
                         <StyledGalleryArrowIcon src={require("../../../Images/GalleryArrow.png")} flipped/>
@@ -29,7 +30,7 @@ class CartImageGallery extends Component {
                         <StyledGalleryArrowIcon src={require("../../../Images/GalleryArrow.png")}/>
                     </StyledImageArrowButton>
                 </StyledImageArrowContainer>}
-            </StyledTestImageContainer>
+            </StyledGalleryImageContainer>
         );
     }
 }
@@ -41,9 +42,7 @@ const StyledGalleryArrowIcon = styled.img`
 `
 
 const StyledImageArrowButton = styled.button`
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
+    ${SharedCssFlexCentered}
 
     border: none;
     background-color: black;
@@ -65,21 +64,10 @@ const StyledImageArrowContainer = styled.div`
     bottom: 0;
 `
 
-const StyledTestImage = styled.img`
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    object-position: right;
-    position: absolute;
-    right: 0;
-    top: 0;
-`
-
-const StyledTestImageContainer = styled.div`
+const StyledGalleryImageContainer = styled.div`
     width: min(90%,20em);
     display: inline-block;
     position: relative;
-    /* background-color: red; */
 `
  
 export default CartImageGallery;

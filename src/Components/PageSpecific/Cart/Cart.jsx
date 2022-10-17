@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
+import styled from 'styled-components';
 
 import CartItemPreview from '../Cart/CartItemPreview';
-import { StyledNameHeader } from '../../../SharedStyles';
-import CartTotalCost, { getTaxCost, getTotalCost } from '../../PageSpecific/Cart/CartTotalCost';
+import { SharedStyledButton, StyledNameHeader } from '../../../SharedStyles';
+import CartTotalCost, { getTaxCost } from '../../PageSpecific/Cart/CartTotalCost';
 import CartTotalQuantity from '../../PageSpecific/Cart/CartTotalQuantity';
 import GlobalContext from '../../State Management/GlobalContext'
-import styled from 'styled-components';
 
 class Cart extends Component {
     
@@ -13,7 +13,7 @@ class Cart extends Component {
 
     render() { 
         return (
-            <div style={{margin: "8%", marginTop: "100px"}}>
+            <StyledCart>
                 <h1>CART</h1>
                 {this.context.cart.map((p,i) => 
                     <StyledCartItemPreview showArrows key={i} item={p} index={i}/>
@@ -32,10 +32,15 @@ class Cart extends Component {
                         Total: <CartTotalCost/>
                     </StyledNameHeader>
                 </StyledTotalContainer>
-            </div>
+                <StyledOrderButton>ORDER</StyledOrderButton>
+            </StyledCart>
         );
     }
 }
+
+const StyledCart = styled.div`
+    margin: 8%;
+`
 
 const StyledCartItemPreview = styled(CartItemPreview)`
     border-top: 1px solid lightgray;
@@ -45,6 +50,12 @@ const StyledCartItemPreview = styled(CartItemPreview)`
 const StyledTotalContainer = styled.div`
     padding-top: 4em;
     border-top: 1px solid lightgray;
+`
+
+const StyledOrderButton = styled(SharedStyledButton)`
+    width: 20em;
+    height: 3em;
+    margin-top: 1em;
 `
  
 export default Cart;

@@ -10,22 +10,24 @@ class MiscStateManager extends Component {
         super.setState(state);
     }
 
+    ////////////////////////////////
+    //Globally available Functions//
+    setSelectedCurrency = (selectedCurrency) => {
+        window.localStorage.setItem('selectedCurrency', JSON.stringify(selectedCurrency));
+        this.setState({selectedCurrency});
+    }
+
+    setSelectedCategory = (selectedCategory) => {
+        this.setState({selectedCategory})
+    }
+
+    /////////////////////////////////////
+    /////////////////////////////////////
+
     constructor(props)
     {
         super(props)
 
-        //Global functions
-        this.setSelectedCurrency = (selectedCurrency) => {
-            window.localStorage.setItem('selectedCurrency', JSON.stringify(selectedCurrency));
-            this.setState({selectedCurrency});
-        }
-
-        this.setSelectedCategory = (selectedCategory) => {
-            this.setState({selectedCategory})
-        }
-
-
-        //Global State
         this.state = {
             currencyList: [],
             selectedCurrency: {},
@@ -37,8 +39,8 @@ class MiscStateManager extends Component {
         }
     }
 
+    
     componentDidMount() {
-
         //Fetch navbar categories
         const categoryNameQuery = new Query("categories", true).addField("name");
         client.post(categoryNameQuery).then((rawCategoryRequest)=>{      

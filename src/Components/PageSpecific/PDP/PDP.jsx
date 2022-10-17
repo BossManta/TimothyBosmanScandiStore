@@ -4,7 +4,7 @@ import { Query, client, Field } from '@tilework/opus';
 import styled from 'styled-components';
 
 import ProductGalleryViewer from './ProductGalleryViewer';
-import { useLocation, useParams } from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import GlobalContext from '../../State Management/GlobalContext';
 import ProductDetailsViewer from './ProductDetailsViewer';
 
@@ -19,7 +19,15 @@ class PDPClass extends Component {
     {
         this.context.resetPendingItem();
 
+        //Check if 
         const productData = this.props.location.state ? this.props.location.state : await this.fetchProductData(this.props.params.id);
+        
+        //If page doesnt exist go to 404 page
+        if (!productData)
+        {
+            this.props.navigate('*');
+            return;
+        }
     
         this.setState({productData})
         const {name, gallery, brand, prices, attributes} = productData;
@@ -28,7 +36,6 @@ class PDPClass extends Component {
 
     fetchProductData = async (productId) =>
     {
-        console.log("Fetch!");
         const productDataQuery = new Query("product", false)
                                     .addArgument("id", "String!", productId)
                                     .addFieldList(["name", "inStock", "gallery", "brand", "description"])
@@ -74,13 +81,13 @@ const PDP = (props) => (
         {...props}
         params={useParams()}
         location = {useLocation()}
+        navigate = {useNavigate()}
     />
 );
 
 
 const StyledPDP = styled.div`
     display: flex;
-    margin-top: 100px;
     @media screen and (max-width: 700px) {
         flex-direction: column;
     }

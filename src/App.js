@@ -10,6 +10,7 @@ import PDP from './Components/PageSpecific/PDP/PDP';
 import CartStateManager from './Components/State Management/CartStateManager';
 import GlobalStateCombiner from './Components/State Management/GlobalStateCombiner';
 import MiscStateManager from './Components/State Management/MiscStateManager';
+import Page404 from './Components/PageSpecific/404/Page404';
 
 class App extends Component {
   render() {
@@ -21,12 +22,14 @@ class App extends Component {
           <CartStateManager>
             <GlobalStateCombiner>
               <Navbar/>
-
-              <Routes>
-                <Route path="/" element={<PLP/>} />
-                <Route path="/cart" element={<Cart/>} />
-                <Route path="/product/:id" element={<PDP/>} />
-              </Routes>
+              <div style={{marginTop: "8em"}}>
+                <Routes>
+                  <Route path="/" element={<PLP/>} />
+                  <Route path="/cart" element={<Cart/>} />
+                  <Route path="/product/:id" element={<PDP/>} />
+                  <Route path="*" element={<Page404/>} />
+                </Routes>
+              </div>
             </GlobalStateCombiner>
           </CartStateManager>
         </MiscStateManager>

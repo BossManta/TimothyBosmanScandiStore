@@ -74,7 +74,6 @@ class PLP extends Component {
 }
 
 const StyledPLP = styled.div`
-  margin-top: 90px;
   padding: 20;
   margin-left: 5%;
   margin-right: 5%;
@@ -82,7 +81,7 @@ const StyledPLP = styled.div`
 
 const StyledPLPHeading = styled.h1`
   text-align: left;
-  margin: 50px;
+  margin: 1.5em;
 `
 
 const StyledProductViewerContainer = styled.div`
