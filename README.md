@@ -1,5 +1,6 @@
-#Timothy Bosman’s ScandiWeb Test Assignment Submission 
-##Intro
+# Timothy Bosman’s ScandiWeb Test Assignment Submission
+
+## Intro
 This project was made to demonstrate my React proficiency. I thoroughly enjoyed working on this project. It allowed me to learn new tools and expand my React and CSS knowledge. I am very much open to constructive criticism.
 If you want to learn a bit more about me or get in contact with me you can visit my [website](www.timothybosman.co.za). 
 
@@ -25,7 +26,8 @@ As requested by the test assignment document, I kept the dependencies for this p
 Responsiveness was a high priority for me when working on this project. The website should scale to almost any screen size, including mobile.
 
 ## Setup
-Install all dependencies: `npm install`
-Build and Run: `npm run start`
+- Install all dependencies: `npm install`
+
+- Build and Run: `npm run start`
 
 Note: Double-check that the backend graphQL endpoint has been configured properly. You can change the endpoint in the .env file.
