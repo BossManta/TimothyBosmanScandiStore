@@ -1,70 +1,31 @@
-# Getting Started with Create React App
+#Timothy Bosman’s ScandiWeb Test Assignment Submission 
+##Intro
+This project was made to demonstrate my React proficiency. I thoroughly enjoyed working on this project. It allowed me to learn new tools and expand my React and CSS knowledge. I am very much open to constructive criticism.
+If you want to learn a bit more about me or get in contact with me you can visit my [website](www.timothybosman.co.za). 
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Required Features & Functionality
+I have implemented all the required features dictated by the test assignment document.
+This includes:
+- Product List Page (PLP)
+- Product Details Page (PDP)
+- Cart
+- Cart Modal
+- Currency Selection Modal
 
-## Available Scripts
+All functionality has also been included. For example, it is possible to item attributes before adding them to the cart and it is possible to change the desired currency. In addition to the requested functionality, I have also included a few extra features. For example, I made an attribute selection modal for the PLP page. This allows for any product to be added to the cart from the PLP page. 
 
-In the project directory, you can run:
+## Dependences
+As requested by the test assignment document, I kept the dependencies for this project at a minimum. Below is a list of the dependencies that I added after using CreateReactApp:
+- react-dom
+- react-router-dom
+- styled-components
+- opus (GraphQL client)
 
-### `npm start`
+## Responsiveness
+Responsiveness was a high priority for me when working on this project. The website should scale to almost any screen size, including mobile.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Setup
+Install all dependencies: `npm install`
+Build and Run: `npm run start`
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Note: Double-check that the backend graphQL endpoint has been configured properly. You can change the endpoint in the .env file.
