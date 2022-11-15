@@ -42,7 +42,7 @@ class CartItemPreview extends Component {
 
                     {/* Price */}
                     <SharedStyledH3 weight={500}>
-                        <PriceViewer prices={prices}/>
+                        <PriceViewer prices={prices} mustSelectCurrency/>
                     </SharedStyledH3>
 
                     {/* Attributes */}

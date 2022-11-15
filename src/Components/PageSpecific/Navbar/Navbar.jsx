@@ -67,7 +67,7 @@ const StyledNavbar = styled.div`
 const StyledNavModalButtonsContainer = styled.div`
     width: 30%;
     display: flex;
-    justify-content: right
+    justify-content: right;
 `
  
 export default Navbar;

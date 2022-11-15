@@ -1,6 +1,11 @@
 import React, { Component } from 'react';
 import { CCProvider } from './CartContext';
 
+///////////////////////////////////////////////////////////////////////
+//WARNING: If you change cart format update the cache version in .env//
+///////////////////////////////////////////////////////////////////////
+const cacheVersion = process.env.REACT_APP_CACHE_VERSION;
+
 //A globally available context to manage cart state
 class CartStateManager extends Component {
     
@@ -8,7 +13,7 @@ class CartStateManager extends Component {
     //(Allows for cart info to be saved on browser close or refresh)
     updateLocalStorage(cart)
     {
-        window.localStorage.setItem('cart', JSON.stringify(cart));
+        window.localStorage.setItem('PrevCartCache', JSON.stringify({"cart":cart, "ScandiCartVersion":cacheVersion}));
     }
 
     ////////////////////////////////
@@ -100,13 +105,26 @@ class CartStateManager extends Component {
         super(props)
 
         //Checks local storage to see if previous cart information is avaliable
-        const oldCart = JSON.parse(window.localStorage.getItem('cart'));
+        const prevCartCache = JSON.parse(window.localStorage.getItem('PrevCartCache'));
+
+        var loadedCart = [];
+        if (prevCartCache && prevCartCache.ScandiCartVersion!==undefined && prevCartCache.ScandiCartVersion === cacheVersion)
+        {
+            loadedCart = prevCartCache.cart;
+            console.info("Cart cache has been loaded successfully.");
+        }
+        else
+        {
+            console.info("Invalid cart cache. Reverting to initial cart state.");
+        }
+
+
 
 
         //State of cart
         this.state = {
             //Stores products in cart
-            cart: oldCart || [],
+            cart: loadedCart,
 
             //Store product before it is added to cart (allows for attribute selection)
             pendingItem: {details:{}, attributeSelections: {}, count: 0},

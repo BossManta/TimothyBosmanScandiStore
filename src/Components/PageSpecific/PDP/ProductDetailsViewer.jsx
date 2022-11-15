@@ -5,6 +5,7 @@ import GroupAttributeViewer from '../../Shared/GroupAttributeViewer';
 import PriceViewer from '../../Shared/PriceViewer';
 import GlobalContext from '../../State Management/GlobalContext';
 import AddToCartButton from './AddToCartButton';
+import SafeProductDescription from './SafeProductDescription';
 
 //Displays product details (e.g. Name, Brand, Description etc)
 class ProductDetailsViewer extends Component {
@@ -27,14 +28,16 @@ class ProductDetailsViewer extends Component {
                 
                 {/* Product Price */}
                 <SharedStyledH3 isBold>
-                    {prices?<PriceViewer prices={prices}/>:"Loading..."}
+                    <PriceViewer prices={prices} mustSelectCurrency/>
                 </SharedStyledH3>
                 
                 {/* Add to cart (if in stock and attributes selected) */}
                 <StyledAddToCartButton inStock={inStock}/>
 
                 {/* Product discription (DANGER: XSS is a possibility) */}
-                <StyledDescription dangerouslySetInnerHTML={{__html: description}}/>
+
+                {/* <StyledDescription dangerouslySetInnerHTML={{__html: description}}/> */}
+                <SafeProductDescription html={description} />
             </StyledProductDetailsViewer>
         );
     }
@@ -49,10 +52,5 @@ const StyledAddToCartButton = styled(AddToCartButton)`
     padding: 1.5em;
     width: 100%;
 `
-
-const StyledDescription = styled.div`
-    margin-top: 2em;
-`
-
  
 export default ProductDetailsViewer;

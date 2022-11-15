@@ -42,6 +42,7 @@ class PLP extends Component {
                                         
                                     ]));
       
+    console.log("Fetch PLP");
     client.post(categoryNameQuery).then((rawRequest)=>{
       this.setState({category ,products: rawRequest.category.products})
     });
@@ -89,7 +90,7 @@ const StyledPLPHeading = styled.h1`
 
 const StyledProductViewerContainer = styled.div`
   display: flex;
-  justify-content: center;
+  justify-content: left;
   flex-wrap: wrap;
 `
   

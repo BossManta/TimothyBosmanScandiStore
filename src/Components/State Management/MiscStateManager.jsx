@@ -46,6 +46,7 @@ class MiscStateManager extends Component {
     componentDidMount() {
         //Fetch navbar categories
         const categoryNameQuery = new Query("categories", true).addField("name");
+        console.log("Fetch Categories");
         client.post(categoryNameQuery).then((rawCategoryRequest)=>{      
             const newCategories = rawCategoryRequest.categories.map((c,i)=>
             ({
@@ -61,6 +62,7 @@ class MiscStateManager extends Component {
 
         //Fetch list of currencies.
         const currencyQuery = new Query("currencies", true).addFieldList(["label","symbol"]);
+        console.log("Fetch currencies");
         client.post(currencyQuery).then((rawCurrencies)=>{      
             const currencyList = rawCurrencies.currencies.map(c=>({label: c.label, symbol: c.symbol}));
 

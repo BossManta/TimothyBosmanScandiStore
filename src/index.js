@@ -6,11 +6,12 @@ import { BrowserRouter } from 'react-router-dom';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
-  </React.StrictMode>
+  //Disabled react strict mode to prevent double api fetching
+  //<React.StrictMode>
+  <BrowserRouter>
+    <App />
+  </BrowserRouter>
+  //</React.StrictMode>
 );
 
 // If you want to start measuring performance in your app, pass a function

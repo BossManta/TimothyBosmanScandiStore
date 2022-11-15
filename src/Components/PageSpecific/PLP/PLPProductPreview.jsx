@@ -48,7 +48,7 @@ class PLPProductPreview extends Component {
                 <StyledPreviewContainer>
                     <PLPImagePreview img={gallery[0]}  inStock={inStock} />
                     <p>{`${brand}: ${name}`}</p>
-                    <PriceViewer prices={prices}/>
+                    <PriceViewer prices={prices} mustSelectCurrency/>
                 </StyledPreviewContainer>
 
                 {/* Quick add to cart button */}

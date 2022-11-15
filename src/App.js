@@ -27,6 +27,7 @@ class App extends Component {
                   <Route path="/" element={<PLP/>} />
                   <Route path="/cart" element={<Cart/>} />
                   <Route path="/product/:id" element={<PDP/>} />
+                  <Route path="/category/:id" element={<PLP/>} />
                   <Route path="*" element={<Page404/>} />
                 </Routes>
               </div>

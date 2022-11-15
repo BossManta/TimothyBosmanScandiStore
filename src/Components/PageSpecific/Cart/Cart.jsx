@@ -6,6 +6,7 @@ import { SharedCssButton, SharedCssFlexCentered, SharedStyledH3 } from '../../Gl
 import CartTotalCost, { getTaxCost } from '../../PageSpecific/Cart/CartTotalCost';
 import CartTotalQuantity from '../../PageSpecific/Cart/CartTotalQuantity';
 import GlobalContext from '../../State Management/GlobalContext'
+import PriceViewer from '../../Shared/PriceViewer';
 
 //Page to display cart
 class Cart extends Component {
@@ -24,7 +25,7 @@ class Cart extends Component {
 
                 <StyledTotalContainer>
                     <SharedStyledH3>
-                        Tax 21%: {this.context.selectedCurrency.symbol+getTaxCost(this.context)}
+                        Tax 21%: <PriceViewer price={getTaxCost(this.context)}/>
                     </SharedStyledH3>
 
                     <SharedStyledH3>

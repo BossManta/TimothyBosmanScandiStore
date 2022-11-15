@@ -52,6 +52,7 @@ class PDPClass extends Component {
                                         .addFieldList(["name","type"]))
                                     ]);
         
+        console.log("Fetch PDP");
         return (await client.post(productDataQuery)).product;
     }
 
