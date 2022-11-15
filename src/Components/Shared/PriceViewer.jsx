@@ -7,7 +7,6 @@ export const MoneyFormatter = (value) => {
 }
 
 export const ExtractPrice = (prices, context) => {
-    console.log(prices, context);
     return prices.find(s => (s.currency.label === context.selectedCurrency.label)).amount;
 }
 

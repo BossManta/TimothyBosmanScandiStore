@@ -24,7 +24,7 @@ class App extends Component {
               <Navbar/>
               <div style={{marginTop: "8em"}}>
                 <Routes>
-                  <Route path="/" element={<PLP/>} />
+                  <Route path="/" element={<h1 style={{textAlign:"center"}}>Loading..</h1>} />
                   <Route path="/cart" element={<Cart/>} />
                   <Route path="/product/:id" element={<PDP/>} />
                   <Route path="/category/:id" element={<PLP/>} />

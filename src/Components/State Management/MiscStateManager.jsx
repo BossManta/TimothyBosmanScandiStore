@@ -2,9 +2,10 @@ import React, {Component} from 'react';
 import { client, Query } from '@tilework/opus';
 
 import { MCProvider } from './MiscContext';
+import { useNavigate } from 'react-router-dom';
 
 //A globally available context to handle miscellaneous state
-class MiscStateManager extends Component {
+class MiscStateManagerClass extends Component {
     
     setState(state)
     {
@@ -56,6 +57,7 @@ class MiscStateManager extends Component {
             
             const defaultSelected = newCategories[0]?newCategories[0].name:"";
 
+            this.props.navigate(`category/${defaultSelected}`);
             this.setState({selectedCategory: defaultSelected, categoryList: newCategories});     
         });
 
@@ -85,5 +87,13 @@ class MiscStateManager extends Component {
         );
     }
 }
+
+//Functinal wrapper to allow for navigation
+const MiscStateManager = (props) => (
+    <MiscStateManagerClass 
+        {...props}
+        navigate = {useNavigate()}
+    />
+  );
  
 export default MiscStateManager;

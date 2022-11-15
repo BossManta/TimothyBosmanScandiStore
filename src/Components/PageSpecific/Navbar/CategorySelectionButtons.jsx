@@ -9,19 +9,13 @@ class CategorySelectionButtons extends Component {
     
     static contextType = GlobalContext;
 
-    handleCategorySelection = (categoryName) => 
-    {
-        this.context.setSelectedCategory(categoryName)
-    }
-
     render() { 
         return (
             <StyledCategorySelectionContainer>
                 {this.context.categoryList.map(c=>(
-                    <StyledNavLink    to={"/"}
+                    <StyledNavLink    to={`/category/${c.name}`}
                                         key={c.id}
-                                        selected={this.context.selectedCategory===c.name}
-                                        onClick={()=>this.handleCategorySelection(c.name)}>
+                                        selected={this.context.selectedCategory===c.name}>
 
                         {c.name.toUpperCase()}
                     </StyledNavLink>

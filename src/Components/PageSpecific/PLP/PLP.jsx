@@ -4,26 +4,42 @@ import styled from 'styled-components';
 
 import PLPProductPreview from './PLPProductPreview';
 import GlobalContext from '../../State Management/GlobalContext';
+import { useNavigate, useParams } from 'react-router-dom';
 
 //Product List Page. Lists all products in selected category.
-class PLP extends Component {
+class PLPClass extends Component {
 
   state = {
-      selectedCategory: "",
       products: []
   }
 
   static contextType = GlobalContext;
 
-  capatalizeFirst = (text) =>
+  async componentDidMount()
   {
+    this.loadCategory();
+  }
+
+  loadCategory = async () => {
+    const rawRequest = await this.fetchProducts(this.props.params.id);
+    if (!rawRequest.category)
+    {
+      this.props.navigate('*');
+      return;
+    }
+
+    this.setState({products: rawRequest.category.products})
+    this.context.setSelectedCategory(this.props.params.id);
+  }
+
+  capatalizeFirst = (text) => {
       const first = text.charAt(0);
       const rest = text.slice(1);
       return first.toUpperCase()+rest;
   }
 
-  fetchProducts = (category) =>
-  {
+  fetchProducts = async (category) => {
+
     const categoryNameQuery = new Query("category", false)
                                   .addArgument("input", "CategoryInput", {title:category})
                                   .addField(new Field("products", true)
@@ -43,25 +59,21 @@ class PLP extends Component {
                                     ]));
       
     console.log("Fetch PLP");
-    client.post(categoryNameQuery).then((rawRequest)=>{
-      this.setState({category ,products: rawRequest.category.products})
-    });
+    return (await client.post(categoryNameQuery));
   }
 
   render() {
 
-      //Detect category change. Updates product list on change.
-      if (this.context.selectedCategory!==this.state.category)
-      {
-          this.fetchProducts(this.context.selectedCategory);
-      } 
+    if (this.props.params.id !== this.context.selectedCategory) {
+      this.loadCategory();
+    }
 
       return (
           <StyledPLP>
 
               {/* Category Name heading */}
               <StyledPLPHeading>
-                {this.capatalizeFirst(this.context.selectedCategory)}
+                {this.capatalizeFirst(this.props.params.id)}
               </StyledPLPHeading>
               
               {/* List all products in category */}
@@ -76,6 +88,14 @@ class PLP extends Component {
       );
   }
 }
+
+const PLP = (props) => (
+  <PLPClass 
+      {...props}
+      params={useParams()}
+      navigate = {useNavigate()}
+  />
+);
 
 const StyledPLP = styled.div`
   padding: 20;
