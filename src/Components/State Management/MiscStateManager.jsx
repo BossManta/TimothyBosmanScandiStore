@@ -4,6 +4,8 @@ import { client, Query } from '@tilework/opus';
 import { MCProvider } from './MiscContext';
 import { useNavigate } from 'react-router-dom';
 
+const cacheVersion = process.env.REACT_APP_CACHE_VERSION;
+
 //A globally available context to handle miscellaneous state
 class MiscStateManagerClass extends Component {
     
@@ -17,7 +19,7 @@ class MiscStateManagerClass extends Component {
     ////////////////////////////////
 
     setSelectedCurrency = (selectedCurrency) => {
-        window.localStorage.setItem('selectedCurrency', JSON.stringify(selectedCurrency));
+        window.localStorage.setItem('ScandiCurrencyCache', JSON.stringify({selectedCurrency, 'ScandiCacheVersion': cacheVersion}));
         this.setState({selectedCurrency});
     }
 
@@ -56,8 +58,7 @@ class MiscStateManagerClass extends Component {
             }));
             
             const defaultSelected = newCategories[0]?newCategories[0].name:"";
-
-            this.props.navigate(`category/${defaultSelected}`);
+            
             this.setState({selectedCategory: defaultSelected, categoryList: newCategories});     
         });
 
@@ -69,10 +70,21 @@ class MiscStateManagerClass extends Component {
             const currencyList = rawCurrencies.currencies.map(c=>({label: c.label, symbol: c.symbol}));
 
             //Load from localStorage or Set default selected currency
-            const oldSelectedCurrency = JSON.parse(window.localStorage.getItem('selectedCurrency'));
-            const defaultCurrency = currencyList[0]?currencyList[0]:{};
-            const selectedCurrency = oldSelectedCurrency || defaultCurrency;
+            let selectedCurrency = currencyList[0]?currencyList[0]:{};
+            
+            let prevCurrencyCache;
+            try{
+                prevCurrencyCache = JSON.parse(window.localStorage.getItem('ScandiCurrencyCache'));
+            } catch {
+                prevCurrencyCache = false;
+            }
 
+            if (prevCurrencyCache && prevCurrencyCache.ScandiCacheVersion===cacheVersion) {
+                selectedCurrency = prevCurrencyCache.selectedCurrency;
+                console.info("Currency cache has been loaded successfully.");
+            } else {
+                console.info("Invalid currency cache. Reverting to initial currency state.");
+            }
             
             this.setState({currencyList, selectedCurrency});
         });

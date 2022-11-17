@@ -13,7 +13,7 @@ class CartStateManager extends Component {
     //(Allows for cart info to be saved on browser close or refresh)
     updateLocalStorage(cart)
     {
-        window.localStorage.setItem('PrevCartCache', JSON.stringify({"cart":cart, "ScandiCartVersion":cacheVersion}));
+        window.localStorage.setItem('PrevCartCache', JSON.stringify({"cart":cart, "ScandiCacheVersion":cacheVersion}));
     }
 
     ////////////////////////////////
@@ -105,20 +105,20 @@ class CartStateManager extends Component {
         super(props)
 
         //Checks local storage to see if previous cart information is avaliable
-        const prevCartCache = JSON.parse(window.localStorage.getItem('PrevCartCache'));
+        let prevCartCache;
+        try{
+            prevCartCache = JSON.parse(window.localStorage.getItem('PrevCartCache'));
+        } catch {
+            prevCartCache = false;
+        }
 
-        var loadedCart = [];
-        if (prevCartCache && prevCartCache.ScandiCartVersion!==undefined && prevCartCache.ScandiCartVersion === cacheVersion)
-        {
+        let loadedCart = [];
+        if (prevCartCache && prevCartCache.ScandiCacheVersion === cacheVersion) {
             loadedCart = prevCartCache.cart;
             console.info("Cart cache has been loaded successfully.");
-        }
-        else
-        {
+        } else {
             console.info("Invalid cart cache. Reverting to initial cart state.");
         }
-
-
 
 
         //State of cart

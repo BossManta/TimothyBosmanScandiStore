@@ -67,9 +67,7 @@ const StyledNavModalButton = styled.button`
     background-color: white;
     font-weight: 500;
     margin-right: 1%;
-    
-    -webkit-user-select: none; /* Safari */
-    -ms-user-select: none; /* IE 10 and IE 11 */
+
     user-select: none; /* Standard syntax */
 `
 

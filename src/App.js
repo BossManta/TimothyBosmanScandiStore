@@ -11,6 +11,7 @@ import CartStateManager from './Components/State Management/CartStateManager';
 import GlobalStateCombiner from './Components/State Management/GlobalStateCombiner';
 import MiscStateManager from './Components/State Management/MiscStateManager';
 import Page404 from './Components/PageSpecific/404/Page404';
+import LandingRedirector from './Components/PageSpecific/PLP/LandingRedirector';
 
 class App extends Component {
   render() {
@@ -24,7 +25,7 @@ class App extends Component {
               <Navbar/>
               <div style={{marginTop: "8em"}}>
                 <Routes>
-                  <Route path="/" element={<h1 style={{textAlign:"center"}}>Loading..</h1>} />
+                  <Route path="/" element={<LandingRedirector/>} />                 
                   <Route path="/cart" element={<Cart/>} />
                   <Route path="/product/:id" element={<PDP/>} />
                   <Route path="/category/:id" element={<PLP/>} />

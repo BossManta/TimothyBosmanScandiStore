@@ -108,6 +108,7 @@ const StyledModalContainer = styled.div`
     padding: 2em;
     width: 20em;
     height: 40em;
+    max-height: max(calc(100vh - 8% - 8em), 25em);
     top: 8%;
     right: 5%;
     position: fixed;
