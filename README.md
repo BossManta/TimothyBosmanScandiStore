@@ -23,6 +23,8 @@ As requested by the test assignment document, I kept the dependencies for this p
 - react-router-dom
 - styled-components
 - opus (GraphQL client)
+- dompurify
+- html-react-parser
 
 ## Responsiveness 📱
 Responsiveness was a high priority for me when working on this project. The website should scale to almost any screen size, including mobile.
