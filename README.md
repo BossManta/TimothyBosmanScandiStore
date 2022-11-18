@@ -30,6 +30,9 @@ As requested by the test assignment document, I kept the dependencies for this p
 Responsiveness was a high priority for me when working on this project. The website should scale to almost any screen size, including mobile.
 
 ## Setup 🏃‍♂️
+
+- Download and run the GraphQL backend at: https://github.com/scandiweb/junior-react-endpoint
+
 - Install all dependencies: `npm install`
 
 - Build and Run: `npm run start`
